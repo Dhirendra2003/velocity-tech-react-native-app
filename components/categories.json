@@ -1,0 +1,27 @@
+[
+  {
+    "id": "astrologer",
+    "name": "Astrologer",
+    "icon": "https://img.icons8.com/color/96/000000/crystal-ball.png"
+  },
+  {
+    "id": "assistant",
+    "name": "Assistant",
+    "icon": "https://cdn-icons-png.flaticon.com/512/2883/2883826.png"
+  },
+  {
+    "id": "makeup",
+    "name": "Makeup",
+    "icon": "https://cdn-icons-png.flaticon.com/512/1807/1807383.png"
+  },
+  {
+    "id": "mehndi",
+    "name": "Mehndi",
+    "icon": "https://cdn-icons-png.flaticon.com/512/11548/11548500.png"
+  },
+  {
+    "id": "photographer",
+    "name": "Photographer",
+    "icon": "https://img.icons8.com/color/96/000000/camera.png"
+  }
+]

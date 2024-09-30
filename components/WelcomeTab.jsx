@@ -1,14 +1,25 @@
-import { Text, StyleSheet, View } from 'react-native'
-import React, { Component } from 'react'
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-export default class WelcomeTab extends Component {
-  render() {
-    return (
-      <View>
-        <Text>WelcomeTab</Text>
-      </View>
-    )
-  }
-}
+const WelcomeTab = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Welcome</Text>
+    </View>
+  );
+};
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+});
+
+export default WelcomeTab;
