@@ -6,6 +6,7 @@ const WelcomeTab = () => {
     <View style={styles.container}>
       <Text style={styles.text}>Welcome</Text>
     </View>
+    
   );
 };
 

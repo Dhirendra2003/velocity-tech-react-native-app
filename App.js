@@ -17,8 +17,8 @@ const TabNavigator = () => (
         let iconName;
         if (route.name === 'Welcome') {
           iconName = focused ? 'home' : 'home-outline';
-        } else if (route.name === 'Categories') {
-          iconName = focused ? 'grid' : 'grid-outline';
+        } else if (route.name === 'Contacts') {
+          iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
         }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
@@ -27,7 +27,7 @@ const TabNavigator = () => (
     })}
   >
     <Tab.Screen name="Welcome" component={WelcomeTab} options={{ headerShown: false }} />
-    <Tab.Screen name="Categories" component={CategoriesTab} options={{ headerShown: false }} />
+    <Tab.Screen name="Contacts" component={CategoriesTab} options={{ headerShown: false }} />
   </Tab.Navigator>
 );
 

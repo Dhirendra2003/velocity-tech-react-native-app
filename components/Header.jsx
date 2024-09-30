@@ -22,7 +22,7 @@ const Header = ({ onSearch, onCategorySelect, onFilterToggle }) => {
     <View style={styles.header}>
       <View style={styles.topBar}>
         <Ionicons name="menu" size={24} color="black" />
-        <Image source={{ uri: 'https://img.icons8.com/color/96/000000/hearts.png' }} style={styles.logo} />
+        <Image source={{ uri: 'https://scontent.fnag4-1.fna.fbcdn.net/v/t39.30808-1/302532542_202456052135818_4484211575290958857_n.jpg?stp=dst-jpg_s200x200&_nc_cat=100&ccb=1-7&_nc_sid=f4b9fd&_nc_ohc=r80MdnySARUQ7kNvgEn21o5&_nc_ht=scontent.fnag4-1.fna&_nc_gid=AKOSjEeuI151bcCPDzW0EcC&oh=00_AYDH5IQaWobCFbPVcvu4Crk9CJtadLYaReT_VEEP_F6XYQ&oe=6700B3ED' }} style={styles.logo} />
         <Ionicons name="notifications-outline" size={24} color="black" />
       </View>
       
@@ -72,8 +72,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logo: {
-    width: 32,
+    width: 100,
     height: 32,
+    marginLeft:20,
+    marginRight:'auto'
   },
   searchContainer: {
     paddingHorizontal: 10,
