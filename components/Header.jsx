@@ -3,19 +3,17 @@ import { View, TextInput, StyleSheet, ScrollView, TouchableOpacity, Image } from
 import { Ionicons } from '@expo/vector-icons';
 import categories from './categories.json';
 
-const Header = ({ onSearch, onCategorySelect, onFilterToggle }) => {
+const Header = ({ onSearch, onCategorySelect, onClearFilters, filterState }) => {
   const [searchText, setSearchText] = useState('');
-  const [isFilterActive, setIsFilterActive] = useState(false);
 
   const handleSearch = (text) => {
     setSearchText(text);
     onSearch(text);
   };
 
-  const handleFilterToggle = () => {
-    const newFilterState = !isFilterActive;
-    setIsFilterActive(newFilterState);
-    onFilterToggle(newFilterState);
+  const handleClearFilters = () => {
+    onClearFilters();
+    setSearchText('');
   };
 
   return (
@@ -25,15 +23,18 @@ const Header = ({ onSearch, onCategorySelect, onFilterToggle }) => {
         <Image source={{ uri: 'https://scontent.fnag4-1.fna.fbcdn.net/v/t39.30808-1/302532542_202456052135818_4484211575290958857_n.jpg?stp=dst-jpg_s200x200&_nc_cat=100&ccb=1-7&_nc_sid=f4b9fd&_nc_ohc=r80MdnySARUQ7kNvgEn21o5&_nc_ht=scontent.fnag4-1.fna&_nc_gid=AKOSjEeuI151bcCPDzW0EcC&oh=00_AYDH5IQaWobCFbPVcvu4Crk9CJtadLYaReT_VEEP_F6XYQ&oe=6700B3ED' }} style={styles.logo} />
         <Ionicons name="notifications-outline" size={24} color="black" />
       </View>
-      
+
       <View style={styles.categoryScroll}>
         {categories.map((category) => (
           <TouchableOpacity
             key={category.id}
             style={styles.categoryItem}
-            onPress={() => onCategorySelect(category.id)}
+            onPress={() => {
+              onCategorySelect(category.id);
+              //  console.log(filterState)
+            }}
           >
-            <Image source={{ uri: category.icon }} style={styles.categoryIcon} />
+            <Image source={{ uri: category.icon }} style={[styles.categoryIcon,filterState===category.id && styles.selectedCategory ]} />
           </TouchableOpacity>
         ))}
       </View>
@@ -47,11 +48,11 @@ const Header = ({ onSearch, onCategorySelect, onFilterToggle }) => {
             onChangeText={handleSearch}
           />
         </View>
-        <TouchableOpacity 
-          style={[styles.filterButton, isFilterActive && styles.filterButtonActive]}
-          onPress={handleFilterToggle}
+        <TouchableOpacity
+          style={styles.filterButton}
+          onPress={handleClearFilters}
         >
-          <Ionicons name="options-outline" size={24} color={isFilterActive ? "white" : "black"} />
+          <Ionicons name={(filterState || searchText) ? "close-circle-outline" : "options-outline"} size={24} color="black" />
         </TouchableOpacity>
       </View>
     </View>
@@ -102,9 +103,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
   },
-  filterButtonActive: {
-    backgroundColor: 'lightblue',
-  },
   categoryScroll: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -117,13 +115,23 @@ const styles = StyleSheet.create({
     borderRadius: 60,
   },
   categoryIcon: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRadius: 40,
     borderWidth: 1,
     borderColor: 'red',
-    padding: 5
+    padding: 5,
   },
+  selectedCategory:{
+    width: 70,
+    height:70,
+    borderRadius: 40,
+    borderWidth: 5,
+    borderColor: 'red',
+    padding: 5,
+    backgroundColor:'white',
+    elevation:5
+  }
 });
 
 export default Header;

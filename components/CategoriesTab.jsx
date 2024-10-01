@@ -8,25 +8,18 @@ const CategoriesTab = () => {
   const [filteredWorkers, setFilteredWorkers] = useState(workers);
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [isFilterActive, setIsFilterActive] = useState(false);
 
   useEffect(() => {
     filterWorkers();
-  }, [searchText, selectedCategory, isFilterActive]);
+  }, [searchText, selectedCategory]);
 
   const filterWorkers = () => {
-    let filtered = workers;
+    let filtered = workers.filter(worker => 
+      worker.name.toLowerCase().includes(searchText.toLowerCase())
+    );
     
-    if (isFilterActive) {
-      if (selectedCategory) {
-        filtered = filtered.filter(worker => worker.category === selectedCategory);
-      }
-      
-      if (searchText) {
-        filtered = filtered.filter(worker => 
-          worker.name.toLowerCase().includes(searchText.toLowerCase())
-        );
-      }
+    if (selectedCategory) {
+      filtered = filtered.filter(worker => worker.category === selectedCategory);
     }
     
     setFilteredWorkers(filtered);
@@ -40,8 +33,10 @@ const CategoriesTab = () => {
     setSelectedCategory(categoryId);
   };
 
-  const handleFilterToggle = (isActive) => {
-    setIsFilterActive(isActive);
+  const handleClearFilters = () => {
+    setSelectedCategory(null);
+    setSearchText('');
+    console.log('cleared')
   };
 
   return (
@@ -49,7 +44,9 @@ const CategoriesTab = () => {
       <Header 
         onSearch={handleSearch} 
         onCategorySelect={handleCategorySelect} 
-        onFilterToggle={handleFilterToggle}
+        onClearFilters={handleClearFilters}
+        filterState={selectedCategory}
+        searchText={searchText}
       />
       <WorkerGrid workers={filteredWorkers} />
     </View>
