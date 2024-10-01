@@ -22,8 +22,10 @@ const styles = StyleSheet.create({
 
   },
   image: {
-    width: 90,
-    height: 90,
+    maxWidth: 90,
+    maxHeight: 90,
+    minWidth:60,
+    minHeight:60,
     borderRadius: 50,
     marginBottom: 10,
     borderColor:'grey',
